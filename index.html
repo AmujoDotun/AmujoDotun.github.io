@@ -25,7 +25,8 @@
          function get(){
           var phone = document.getElementById('phone').value;
           Parse.Cloud.run('jamesbirthdaypromo',{phone: phone}).then(function(response){
-            document.getElementById('success').style.display = 'block';             
+            document.getElementById('success').style.display = 'block'; 
+            document.getElementById('form').style.display= 'none';
           }).catch(function(e){
                   document.getElementById('oops').innerText=e.message;
            })
