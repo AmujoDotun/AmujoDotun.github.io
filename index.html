@@ -11,8 +11,9 @@
 <body>
 <h6>Happy Birthday to James</h1>
 <p id="info">Please wait</p>
-  <div id="form">
-  <input id="phone" label="Enter your phone number"/>
+  <div id="form" style="display:none">
+  <input id="phone"/>
+    <label for="phone">Enter your phone number</label>
   </div>
 <p>Thanks</p>
   
@@ -20,6 +21,7 @@
     new Parse.Query('App').equalTo('name', 'birthday_promo').first().then(function(object){
       if(object && object.get('active')){
         console.log('promo active')
+        document.getElementById('form').style.display='block';
         
       }
     })
