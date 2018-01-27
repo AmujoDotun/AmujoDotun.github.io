@@ -1,8 +1,28 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
+    <script>
+      Parse.initialize('be4a2836d3d1cbad5cc0911fa2147d02e25b277c', 'adf9343dfkfd');
+      Parse.serverURL = 'https://www.jabuwings.com/api';
+      
+    </script>
+  </head>
 <body>
-<h1>Hello World</h1>
-<p>Contact James Falade via jamesthedove@gmail.com.</p>
+<h6>Happy Birthday to James</h1>
+<p id="info">Please wait</p>
+  <div id="form">
+  <input id="phone" label="Enter your phone number"/>
+  </div>
 <p>Thanks</p>
+  
+  <script>
+    new Parse.Query('App').equalTo('name', 'birthday_promo').first().then(function(object){
+      if(object && object.get('active')){
+        console.log('promo active')
+        
+      }
+    })
+  </script>
 </body>
 </html>
