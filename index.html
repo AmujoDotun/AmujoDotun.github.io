@@ -14,17 +14,36 @@
   <div id="form" style="display:none">
   <input id="phone"/>
     <label for="phone">Enter your phone number</label>
+    
+    <button onclick="get()">Get your free credit</button>
   </div>
+  <p id="oops></p>
+         <p id="success" style="display:none">Oya..... You are the lucky one. Congratulations</p>
 <p>Thanks</p>
   
   <script>
     new Parse.Query('App').equalTo('name', 'birthday_promo').first().then(function(object){
       if(object && object.get('active')){
         console.log('promo active')
+        document.getElementById('info').style.display='none';
         document.getElementById('form').style.display='block';
         
-      }
+      } else{
+         document.getElementById('oops').innerText='Oops. Unfortunately, the promo has ended and was won by '+object.get('value');
+         }
+      
     })
+         
+         function get(){
+          var phone = document.getElementById('phone').value;
+          Parse.Cloud.run('jamesbirthdaypromo',{phone: phone}).then(function(response){
+            document.getElementById('success').style.display = 'block';             
+          }).catch(function(e){
+                  document.getElementById('oops').innerText=e.message;
+           })
+         
+         }
+
   </script>
 </body>
 </html>
