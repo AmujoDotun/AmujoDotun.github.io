@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Happy Birthday to James</title>
     <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
     <script>
       Parse.initialize('be4a2836d3d1cbad5cc0911fa2147d02e25b277c', 'adf9343dfkfd');
@@ -17,9 +18,8 @@
     
     <button onclick="get()">Get your free credit</button>
   </div>
-  <p id="oops></p>
+  <p id="oops"></p>
          <p id="success" style="display:none">Oya..... You are the lucky one. Congratulations</p>
-<p>Thanks</p>
   
   <script>
     new Parse.Query('App').equalTo('name', 'birthday_promo').first().then(function(object){
