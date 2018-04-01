@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Happy Birthday to James</title>
+    <title>Happy Easter</title>
     <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
     <script>
       Parse.initialize('be4a2836d3d1cbad5cc0911fa2147d02e25b277c', 'adf9343dfkfd');
@@ -10,7 +10,7 @@
     </script>
   </head>
 <body>
-<h1>Happy Birthday to James</h1>
+<h1>Happy Easter Celebration</h1>
   <p>Your phone number will be credited with 50 naira everytime you click the button below until the party ends.. ;)</p>
   <div id="form">
   <input id="phone"/>
@@ -22,14 +22,18 @@
          <p id="success" style="display:none">Oya..... You are one the lucky ones. Congratulations. Please refresh the page to try again.</p>
   
   <script>
+          var getting = false;
          function get(){
-          var phone = document.getElementById('phone').value;
-          Parse.Cloud.run('jamesbirthdaypromo',{phone: phone}).then(function(response){
-            document.getElementById('success').style.display = 'block'; 
-            document.getElementById('form').style.display= 'none';
-          }).catch(function(e){
-                  document.getElementById('oops').innerText=e.message;
-           })
+           if(!getting){
+             var phone = document.getElementById('phone').value;
+            Parse.Cloud.run('jamesbirthdaypromo',{phone: phone}).then(function(response){
+              document.getElementById('success').style.display = 'block'; 
+              document.getElementById('form').style.display= 'none';
+            }).catch(function(e){
+                document.getElementById('oops').innerText=e.message;
+            });
+           }
+          
          
          }
 
