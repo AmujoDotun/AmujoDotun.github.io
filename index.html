@@ -19,17 +19,21 @@
     <button onclick="get()">Get your free credit</button>
   </div>
   <p id="oops"></p>
+  <p id="loading" style="display:none">Please Wait</p>
          <p id="success" style="display:none">Oya..... You are one the lucky ones. Congratulations. Please refresh the page to try again.</p>
   
   <script>
           var getting = false;
          function get(){
            if(!getting){
+              document.getElementById('loading').style.display = 'block'; 
              var phone = document.getElementById('phone').value;
             Parse.Cloud.run('jamesbirthdaypromo',{phone: phone}).then(function(response){
+              document.getElementById('loading').style.display = 'none'; 
               document.getElementById('success').style.display = 'block'; 
               document.getElementById('form').style.display= 'none';
             }).catch(function(e){
+              document.getElementById('loading').style.display = 'none'; 
                 document.getElementById('oops').innerText=e.message;
             });
            }
