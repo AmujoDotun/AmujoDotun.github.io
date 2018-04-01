@@ -16,7 +16,7 @@
   <input id="phone"/>
     <label for="phone">Enter your phone number</label>
     
-    <button onclick="get()">Get your free credit</button>
+    <button id="button" onclick="get()">Get your free credit</button>
   </div>
   <p id="oops"></p>
   <p id="loading" style="display:none">Please Wait</p>
@@ -27,12 +27,14 @@
          function get(){
            if(!getting){
               document.getElementById('loading').style.display = 'block'; 
+             document.getElementById('button').style.display = 'none';
              var phone = document.getElementById('phone').value;
             Parse.Cloud.run('jamesbirthdaypromo',{phone: phone}).then(function(response){
               document.getElementById('loading').style.display = 'none'; 
               document.getElementById('success').style.display = 'block'; 
               document.getElementById('form').style.display= 'none';
             }).catch(function(e){
+              document.getElementById('button').style.display = 'block';
               document.getElementById('loading').style.display = 'none'; 
                 document.getElementById('oops').innerText=e.message;
             });
